@@ -3,34 +3,64 @@
 const getYear = () => {
   const year = new Date();
   document.querySelector("#current-year").innerText = year.getFullYear();
-}
+};
 
-getYear();
+// Define Variables
 
-// Get Input Range Value
 // Save the grid-range element into a variable
-const inputRangeValue = document.querySelector("#grid-range");
-// Add an event listener to the inputRangeValue, so when
-// is clicked, the values 1 and 2 change
-const getInputRangeValue = () => {
-  inputRangeValue.addEventListener("click", () => {
-    const rangeValue1 = document.querySelector("#value-1");
-    const rangeValue2 = document.querySelector("#value-2");
-    rangeValue1.innerText = inputRangeValue.value;
-    rangeValue2.innerText = inputRangeValue.value;
-  })
-}
+const inputRange = document.querySelector("#grid-range");
 
-getInputRangeValue();
-
-// Grid components
+// Save the color-picker value
+let colorPicker = document.querySelector("#color-picker");
 
 // Save the grid main container into a variable
 const gridContainer = document.querySelector("#sketch-container");
 
-// Define the variable for creating a new div
-const gridComponent = document.createElement("div");
+// Insert Grid Component
+const insertGridComponent = () => {
+  // Save the input range value ^ 2
+  let inputRangeUpper = Math.pow(inputRange.value, 2);
+  // Ask if the gridContainer has children
+  if (gridContainer.hasChildNodes) {
+    // Saves the last child element into a variable
+    let child = gridContainer.lastElementChild;
+    // While gridContainer has child remove the last
+    // child element
+    while (child) {
+      gridContainer.removeChild(child);
+      child = gridContainer.lastElementChild;
+    }
+  }
+  // If gridContainer has no children enters the
+  // for loop
+  for (let i = 0; i < inputRangeUpper; i++) {
+    // Define the variable for creating a new div
+    const gridComponent = document.createElement("div");
+    // Add the class .sketch-element to every new div
+    gridComponent.classList.add("sketch-element");
+    // Set the width and height for every new div
+    gridComponent.style.cssText = `
+        width: calc(100% / ${inputRange.value}); 
+        height: calc(100% / ${inputRange.value}); 
+      `;
+    // Append a new gridComponent to the main container
+    gridContainer.appendChild(gridComponent);
+  }
+};
 
+// Add an event listener to the inputRangeValue, so when
+// is clicked, the values 1 and 2 change
+const getInputRangeValue = () => {
+  inputRange.addEventListener("click", () => {
+    const rangeValue1 = document.querySelector("#value-1");
+    const rangeValue2 = document.querySelector("#value-2");
+    rangeValue1.innerText = inputRange.value;
+    rangeValue2.innerText = inputRange.value;
+    insertGridComponent();
+  });
+};
 
-
-
+// Call Functions
+getInputRangeValue();
+getYear();
+console.log(colorPicker.value);

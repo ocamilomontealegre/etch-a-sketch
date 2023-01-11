@@ -20,11 +20,11 @@ a {
 
 /*** Variables ***/
 :root {
-  --color-1: #06283D;
-  --color-2: #256D85;
-  --color-3: #47B5FF;
-  --color-4: #DFF6FF;
-  --color-5: #FFFFFF;
+  --color-1: #06283d;
+  --color-2: #256d85;
+  --color-3: #47b5ff;
+  --color-4: #dff6ff;
+  --color-5: #ffffff;
   --color-6: #000000;
 }
 
@@ -35,7 +35,8 @@ a {
 }
 
 /*** Header and Footer ***/
-.header, .footer {
+.header,
+.footer {
   width: 100%;
   padding: 1.5rem 2.5rem;
   text-align: center;
@@ -101,10 +102,19 @@ a {
 
 /*** Sketch ***/
 .sketch-container {
-  width: 450px;
-  height: 450px;
+  display: flex;
+  flex-flow: row wrap;
+  width: 512px;
+  height: 512px;
   border: 1px solid black;
-  border-radius: 25px;
+}
+
+.sketch-container .sketch-element {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0.2px solid black;
+  background: white;
 }
 
 /*** Footer ***/
