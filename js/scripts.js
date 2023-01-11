@@ -16,20 +16,27 @@ let colorPicker = document.querySelector("#color-picker");
 // Save the grid main container into a variable
 const gridContainer = document.querySelector("#sketch-container");
 
+
+// Remove Grid Components
+const removeGridComponent = () => {
+  // Saves the last child element into a variable
+  let child = gridContainer.lastElementChild;
+  // While gridContainer has child remove the last
+  // child element
+  while (child) {
+    gridContainer.removeChild(child);
+    child = gridContainer.lastElementChild;
+  }
+}
+
 // Insert Grid Component
 const insertGridComponent = () => {
   // Save the input range value ^ 2
   let inputRangeUpper = Math.pow(inputRange.value, 2);
   // Ask if the gridContainer has children
   if (gridContainer.hasChildNodes) {
-    // Saves the last child element into a variable
-    let child = gridContainer.lastElementChild;
-    // While gridContainer has child remove the last
-    // child element
-    while (child) {
-      gridContainer.removeChild(child);
-      child = gridContainer.lastElementChild;
-    }
+    // Call the removeGridComponent function
+    removeGridComponent();
   }
   // If gridContainer has no children enters the
   // for loop
