@@ -1,0 +1,21 @@
+/*** Styles ***/
+
+/*** Google Fonts ***/
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+/*** General Styles ***/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  
+}
+
+/*** Variables ***/
+:root {
+  --main-color: ;
+  --secondary-color: ;
+  --third-color: #fff;
+}
