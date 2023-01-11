@@ -60,12 +60,19 @@ a {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  width: 20%;
   padding: 2rem;
   text-align: center;
   background-color: var(--color-3);
 }
 
-.main .sketch-container {
+.main .sketch-section {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 100%;
   background-color: var(--color-4);
 }
 
@@ -89,6 +96,14 @@ a {
   width: 150px;
   padding: 0.5rem;
   border: none;
+  border-radius: 25px;
+}
+
+/*** Sketch ***/
+.sketch-container {
+  width: 450px;
+  height: 450px;
+  border: 1px solid black;
   border-radius: 25px;
 }
 
