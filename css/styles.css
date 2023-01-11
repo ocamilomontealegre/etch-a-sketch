@@ -9,13 +9,28 @@
 }
 
 body {
+  width: 100%;
+  min-height: 100vh;
   font-family: Poppins, Arial, Helvetica, sans-serif;
-  
 }
 
 /*** Variables ***/
 :root {
-  --main-color: ;
-  --secondary-color: ;
-  --third-color: #fff;
+  --color-1: #06283D;
+  --color-2: #256D85;
+  --color-3: #47B5FF;
+  --color-4: #DFF6FF;
+  --color-5: #FFFFFF;
+  --color-6: #000000;
+}
+
+/*** Wrapper ***/
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+/*** Header ***/
+.header {
+  width: 100%;
 }
