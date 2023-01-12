@@ -13,7 +13,17 @@ const inputRange = document.querySelector("#grid-range");
 const gridContainer = document.querySelector("#sketch-container");
 // Save the color-picker value
 let colorPicker = document.querySelector("#color-picker");
-// 
+// Save the eraser element into a variable
+const eraser = document.querySelector("#eraser");
+// Save the rainbow-mode element into a variable
+const rainbowMode = document.querySelector("#rainbow-mode");
+// Save the clear element into a variable
+const clear = document.querySelector("#clear");
+// Save the value-1 element into a variable
+const rangeValue1 = document.querySelector("#value-1");
+// Save the value-2 element into a variable
+const rangeValue2 = document.querySelector("#value-2");
+// Create and array for the dynamic gridContainer children
 let sketchComponents = [];
 
 // Remove Grid Components
@@ -26,7 +36,7 @@ const removeGridComponent = () => {
     gridContainer.removeChild(child);
     child = gridContainer.lastElementChild;
   }
-}
+};
 
 // Insert Grid Component
 const insertGridComponent = () => {
@@ -56,34 +66,75 @@ const insertGridComponent = () => {
 };
 
 // Paint Grid Components
-const paintGridComponents = () => {
+const paintGridComponent = () => {
   if (sketchComponents) {
     sketchComponents.forEach((element) => {
       element.addEventListener("mouseover", () => {
-          element.style.setProperty("background", colorPicker.value);
+        element.style.setProperty("background", colorPicker.value);
       });
-    })
+    });
   }
+};
+
+// Erase Color
+const eraseColor = () => {
+  eraser.addEventListener("click", activateEraser);
+};
+
+const activateEraser = () => {
+  colorPicker.value = "#FFFFFF";
+  eraser.classList.add("color-button-active");
+  rainbowMode.classList.remove("color-button-active");
+  clear.classList.remove("color-button-active");
+};
+
+// Rainbow Mode
+const getRainbowMode = () => {
+  rainbowMode.addEventListener("click", activateRainbowMode);
+};
+
+const activateRainbowMode = () => {
+  let randomColor = (Math.random() * 0xfffff * 1000000).toString(16);
+  colorPicker.value = "#" + randomColor.slice(0, 6);
+  rainbowMode.classList.add("color-button-active");
+  eraser.classList.remove("color-button-active");
+  clear.classList.remove("color-button-active");
+};
+
+// Clear
+const clearBoard = () => {
+  clear.addEventListener("click", activateClearBoard);
 }
 
-
-
+const activateClearBoard = () => {
+  removeGridComponent();
+  inputRange.value = 0;
+  rangeValue1.innerText = 0;
+  rangeValue2.innerText = 0;
+  clear.classList.add("color-button-active");
+  eraser.classList.remove("color-button-active");
+  rainbowMode.classList.remove("color-button-active");
+}
 
 // Add an event listener to the inputRange element, so when
 // is clicked, the values 1 and 2 change
 const getInputRangeValue = () => {
   inputRange.addEventListener("click", () => {
-    const rangeValue1 = document.querySelector("#value-1");
-    const rangeValue2 = document.querySelector("#value-2");
     rangeValue1.innerText = inputRange.value;
     rangeValue2.innerText = inputRange.value;
-    // Calls the insertGridComponent() function
+    // Call the insertGridComponent() function
     insertGridComponent();
-    paintGridComponents();
+    // Call the paintGridComponent() function
+    paintGridComponent();
+    // Call the eraseColor() function
+    eraseColor();
+    // Call the getRainbowMode() function
+    getRainbowMode();
+    // Call the clearBoard() function
+    clearBoard();
   });
 };
 
 // Call Functions
 getInputRangeValue();
 getYear();
-
