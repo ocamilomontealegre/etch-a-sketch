@@ -9,13 +9,12 @@ const getYear = () => {
 
 // Save the grid-range element into a variable
 const inputRange = document.querySelector("#grid-range");
-
-// Save the color-picker value
-let colorPicker = document.querySelector("#color-picker");
-
 // Save the grid main container into a variable
 const gridContainer = document.querySelector("#sketch-container");
-
+// Save the color-picker value
+let colorPicker = document.querySelector("#color-picker");
+// 
+let sketchComponents = [];
 
 // Remove Grid Components
 const removeGridComponent = () => {
@@ -52,10 +51,25 @@ const insertGridComponent = () => {
       `;
     // Append a new gridComponent to the main container
     gridContainer.appendChild(gridComponent);
+    sketchComponents.push(gridComponent);
   }
 };
 
-// Add an event listener to the inputRangeValue, so when
+// Paint Grid Components
+const paintGridComponents = () => {
+  if (sketchComponents) {
+    sketchComponents.forEach((element) => {
+      element.addEventListener("mouseover", () => {
+          element.style.setProperty("background", colorPicker.value);
+      });
+    })
+  }
+}
+
+
+
+
+// Add an event listener to the inputRange element, so when
 // is clicked, the values 1 and 2 change
 const getInputRangeValue = () => {
   inputRange.addEventListener("click", () => {
@@ -63,11 +77,13 @@ const getInputRangeValue = () => {
     const rangeValue2 = document.querySelector("#value-2");
     rangeValue1.innerText = inputRange.value;
     rangeValue2.innerText = inputRange.value;
+    // Calls the insertGridComponent() function
     insertGridComponent();
+    paintGridComponents();
   });
 };
 
 // Call Functions
 getInputRangeValue();
 getYear();
-console.log(colorPicker.value);
+
